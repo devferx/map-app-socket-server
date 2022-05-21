@@ -9,8 +9,13 @@ class Sockets {
 
   socketEvents() {
     this.io.on("connection", (socket) => {
-      // TODO: Send active markers
-      // TODO: New marker
+      socket.emit("active-markers", this.markers.activeMarkers);
+
+      socket.on("new-marker", (marker) => {
+        this.markers.addMarker(marker);
+
+        socket.broadcast.emit("new-marker", marker);
+      });
       // TODO: Update marker
     });
   }
