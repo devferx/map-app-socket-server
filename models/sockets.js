@@ -1,15 +1,17 @@
+const Markers = require("./markers");
+
 class Sockets {
   constructor(io) {
     this.io = io;
+    this.markers = new Markers();
     this.socketEvents();
   }
 
   socketEvents() {
     this.io.on("connection", (socket) => {
-      // Escuchar evento: mensaje-to-server
-      socket.on("mensaje-to-server", (data) => {
-        this.io.emit("mensaje-from-server", data);
-      });
+      // TODO: Send active markers
+      // TODO: New marker
+      // TODO: Update marker
     });
   }
 }
